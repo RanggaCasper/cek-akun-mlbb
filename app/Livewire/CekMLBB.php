@@ -3,8 +3,10 @@
 namespace App\Livewire;
 
 use Livewire\Component;
-use App\Livewire\Forms\CekMLBBForm;
 use App\Http\Controllers\CodashopController;
+use Livewire\Attributes\Title;
+
+#[Title("Cek ID Game Mobile Legends")]
 
 class CekMLBB extends Component
 {
