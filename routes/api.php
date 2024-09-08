@@ -17,3 +17,5 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::middleware('api')->get('v1/check', [\App\Http\Controllers\CodashopController::class, 'sendApi']);

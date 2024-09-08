@@ -38,7 +38,7 @@
                 @if(isset($result['data']))
                     <div class="w-full max-w-md bg-white border border-gray-200 shadow rounded-lg p-5 mt-3">
                         <h2 class="text-lg font-semibold text-gray-900 mb-2">Hasil</h2>
-                        <address class="relative bg-gray-50 p-4 rounded-lg border border-gray-200 not-italic flex flex-col sm:grid sm:grid-cols-2 gap-y-4" id="contact-details">
+                        <address class="relative bg-gray-50 p-4 rounded-lg border border-gray-200 not-italic flex flex-col gap-y-4" id="contact-details">
                             <div class="space-y-1 text-gray-500 leading-loose">
                                 <div>Username</div>
                                 <div class="font-medium text-gray-900">{{ $result['data']['username'] }}</div>
@@ -48,6 +48,8 @@
                                 <div class="font-medium text-gray-900">{{ $result['data']['this_login_country'] }}</div>
                                 <div>Tanggal Pembuatan Akun</div>
                                 <div class="font-medium text-gray-900">{{ $result['data']['user_reg_time'] }}</div>
+                                <div>Usia Akun</div>
+                                <div class="font-medium text-gray-900">{{ $result['data']['user_reg_time_human'] }}</div>
                             </div>
                             
                             <button onclick="copyToClipboard('#contact-details')" class="absolute right-2 top-2 text-gray-500 hover:bg-gray-100 rounded-lg p-2 inline-flex items-center justify-center">
