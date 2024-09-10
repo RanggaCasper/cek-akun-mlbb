@@ -10,14 +10,22 @@
         
         <meta property="og:title" content="Cek ID Game Mobile Legends">
         <meta property="og:description" content="Tools gratis untuk cek informasi akun Mobile Legends.">
-        <meta property="og:url" content="https://mlbb.casperproject.my.id">
+        <meta property="og:url" content="{{ env('APP_URL') }}">
 
         <script src="https://cdn.tailwindcss.com"></script>
         <link href="https://cdn.jsdelivr.net/npm/flowbite@2.5.1/dist/flowbite.min.css"  rel="stylesheet" />
         <title>{{ $title ?? 'Page Title' }}</title>
     </head>
-    <body class="bg-blue-700">
-        {{ $slot }}
+    <body class="bg-gray-100">
+        
+        <x-navbar />
+        
+        <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4 mt-16">
+            {{ $slot }}
+        </div>
+
+        @stack('footer')
+        
         <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.1/dist/flowbite.min.js"></script>
         @stack('scripts')
     </body>

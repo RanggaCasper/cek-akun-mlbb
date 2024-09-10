@@ -10,7 +10,7 @@ use Illuminate\Support\Carbon;
 use Illuminate\Validation\ValidationException;
 use Faker\Factory as Faker;
 
-class CodashopController extends Controller
+class SmileOneController extends Controller
 {
     private $client;
     private $iso3166;
@@ -25,15 +25,15 @@ class CodashopController extends Controller
     private function getUserData($userId, $zoneId)
     {
         $data = [
-            'country' => 'ID',
-            'deviceId' => Str::uuid(),
-            'userId' => $userId,
-            'voucherTypeName' => 'MOBILE_LEGENDS',
-            'whiteLabelId' => '',
-            'zoneId' => $zoneId,
+            'user_id' => $userId,
+            'zone_id' => $zoneId,
+            'pid' => 25,
+            'checkrole' => 1,
+            'pay_method' => '',
+            'channel_method' => '',
         ];
 
-        return $this->client->post('https://order-sg.codashop.com/validate', [
+        return $this->client->post('https://www.smile.one/merchant/mobilelegends/checkrole/', [
             'headers' => [
                 'User-Agent' => $this->getRandomUserAgent(),
             ],
@@ -50,16 +50,9 @@ class CodashopController extends Controller
 
     private function formatResponse($response)
     {
-        $result = $response['result'];
-        $userRegTime = Carbon::createFromTimestamp($result['user_reg_time'], 'Asia/Jakarta');
-        $diffForHumans = $userRegTime->diffForHumans(Carbon::now('Asia/Jakarta'), true, false, 6);
-
         return [
-            'create_role_country' => $this->iso3166->alpha2($result['create_role_country'])['name'],
-            'this_login_country' => $this->iso3166->alpha2($result['this_login_country'])['name'],
-            'user_reg_time' => $userRegTime->toDateTimeString() . " WIB",
-            'user_reg_time_human' => $diffForHumans,
-            'username' => urldecode($result['username']),
+            'create_role_country' => $this->iso3166->alpha2($response['create_role_country'])['name'],
+            'username' => $response['username'],
         ];
     }
 
@@ -69,7 +62,7 @@ class CodashopController extends Controller
             $response = $this->getUserData($userId, $zoneId);
             $data = json_decode($response->getBody()->getContents(), true);
 
-            if (isset($data['result'])) {
+            if (isset($data['code']) && $data['code'] == 200) {
                 return [
                     'status' => true,
                     'data' => $this->formatResponse($data),
@@ -78,9 +71,8 @@ class CodashopController extends Controller
 
             return [
                 'status' => false,
-                'errors' => $data['errorMsg'] ?? 'Unknown error'
+                'errors' => 'Invalid User Id',
             ];
-
         } catch (\Exception $e) {
             return [
                 'status' => false,
