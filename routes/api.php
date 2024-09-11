@@ -20,3 +20,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::middleware('api')->get('v1/check', [\App\Http\Controllers\CodashopController::class, 'sendApi']);
 Route::middleware('api')->get('v2/check', [\App\Http\Controllers\SmileOneController::class, 'sendApi']);
+

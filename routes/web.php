@@ -15,3 +15,4 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', App\Livewire\CekMLBB::class)->name('index');
 Route::get('/docs', App\Livewire\Docs::class)->name('docs');
+Route::get('/calculator', App\Livewire\Calculator::class)->name('calculator');

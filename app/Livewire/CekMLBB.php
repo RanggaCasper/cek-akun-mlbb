@@ -17,6 +17,7 @@ class CekMLBB extends Component
     protected $rules = [
         'userId' => 'required|numeric|digits_between:6,10',
         'zoneId' => 'required|numeric|digits_between:4,5',
+        'g-recaptcha-response' => 'required|captcha',
     ];
 
     public function store()

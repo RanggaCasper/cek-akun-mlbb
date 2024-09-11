@@ -21,6 +21,9 @@
                 <li>
                     <a href="{{ route('docs') }}" class="block py-2 px-3 {{ request()->routeIs('docs') ? 'text-white md:text-blue-600 bg-blue-600' : 'text-gray-900 hover:bg-gray-100' }} rounded md:bg-transparent md:hover:text-blue-600 md:p-0">API Docs</a>
                 </li>
+                <li>
+                    <a href="{{ route('calculator') }}" class="block py-2 px-3 {{ request()->routeIs('calculator') ? 'text-white md:text-blue-600 bg-blue-600' : 'text-gray-900 hover:bg-gray-100' }} rounded md:bg-transparent md:hover:text-blue-600 md:p-0">Calculator</a>
+                </li>
             </ul>
         </div>
     </div>
